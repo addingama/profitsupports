@@ -1,0 +1,62 @@
+<?php
+App::uses('AppModel', 'Model');
+class Contact extends AppModel {
+
+	public $validate = array(
+		'name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Field ini harus di isi',
+			),
+			'minlength' => array(
+				'rule' => array('minLength', 3),
+				'message' => 'Minimal 3 karakter',
+			),
+		),
+		'email' => array(
+			'email' => array(
+				'rule' => array('email'),
+				'message' => 'Format email harus benar',
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Field ini harus di isi',
+			),
+		),
+		'subject' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Field ini harus di isi',
+			),
+			'minlength' => array(
+				'rule' => array('minLength', 5),
+				'message' => 'Minimal 5 karakter',
+			),
+		),
+		'desc_content' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Field ini harus di isi',
+			),
+		),
+		'status' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+			),
+		),
+	);
+	
+	public function findContact($type = null, $condition = null){
+		return $this->find($type, $condition);
+	}
+	public function readContact($field=null, $id = null){
+		return $this->read($field, $id);
+	}
+	public function saveContact($data = null){
+		$this->create();
+		return $this->save($data);
+	}
+	public function deleteContact($id = null){
+		return $this->delete($id);
+	}
+}

@@ -1,0 +1,12 @@
+<div id="news-header" class="twelve columns block-grid">
+		<h2 class="main-title">News</h2>
+</div>
+<div class="twelve columns block-grid">
+	<?php echo $this->Session->flash(); ?>
+</div>
+<div class="holder-content row">
+	<article class="twelve columns border-gray">
+		<h4 class="news-view-title"><?php echo $this->Html->image('news.png', array('class'=>'content-logo'));?><?php echo $news['News']['title'];?><span class="title-desc"><?php echo $this->Html->link('Ingin Bertanya?',array('controller'=>'contacts', 'action'=>'index' , 'admin'=>false), array('class'=>'button success radius small')); echo $this->Html->link('News Index',array('controller'=>'news', 'action'=>'index' , 'admin'=>false), array('class'=>'button secondary radius small'));?></span></h4>
+		<p class="news-view-content"><?php echo $news['News']['content'];?>
+	</article>
+</div>

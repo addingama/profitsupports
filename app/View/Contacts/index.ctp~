@@ -1,0 +1,30 @@
+<div id="contact-header" class="twelve columns block-grid">
+		<h2 class="main-title">Contact Us</h2>
+</div>
+<div class="twelve columns block-grid">
+	<?php echo $this->Session->flash(); ?>
+</div>
+<div class="spacer twelve clear"></div>
+<div class="row">
+<?php echo $this->Form->create('Contact', array('class'=>'seven columns block-grid')); ?>
+	<fieldset id="form-contact">
+<?php
+	echo $this->Form->input('name', array('label'=>'Nama'));
+	echo $this->Form->input('email', array('label'=>'E-Mail'));
+	echo $this->Form->input('subject', array('label'=>'Judul'));
+	echo $this->Form->input('desc_content', array('label'=>'Pesan'));
+	echo $this->Form->input('status', array('type'=>'hidden', 'value'=>0));
+	echo $this->Form->submit('Send',array('class'=>'button radius'), array('controller'=>'contacts', 'action'=>'index'));
+?>
+	<?php echo $this->Html->image('message.png', array('class'=>'form-logo')); ?>
+	<div class="spacer"></div>
+	</fieldset>
+<?php echo $this->Form->end(); ?>
+	<article class="five columns">
+		<h4 class="title-orange"><?php echo $this->Html->image('article.png', array('class'=>'content-logo')); ?>Catatan Buat Anda</h4>
+		<p class="border-gray">
+			Form <span class="bold">"Contact Us"</span> ini digunakan untuk menyampaikan segala sesuatu yang berkaitan dengan materi tentang Bisnis Online <span style="color:red;">Profit</span><span style="color: #0075BD;">Clicking</span> ataupun pertanyaan-pertanyaan lain. Pesan anda akan di moderasi paling lambat 3 hari oleh administrator dan balasan akan masuk ke email yang anda gunakan.</br></br>Terima kasih telah menghubungi kami.</br></br>Best regard,</br>Administrator
+		</p>
+	</article>
+</div>
+

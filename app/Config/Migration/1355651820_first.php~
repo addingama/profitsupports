@@ -1,0 +1,84 @@
+<?php
+class First extends CakeMigration {
+
+/**
+ * Migration description
+ *
+ * @var string
+ * @access public
+ */
+	public $description = '';
+
+/**
+ * Actions to be performed
+ *
+ * @var array $migration
+ * @access public
+ */
+	public $migration = array(
+		'up' => array(
+		),
+		'down' => array(
+			'create_table' => array(
+				'users' => array(
+					'id' => array('type'=>'integer' , 'length'=> 5, 'key' => 'primary'),
+					'username' => array('type'=>'string', 'default'=>NULL, 'null' => false, 'length'=> 30),
+					'password' => array('type'=>'string', 'default'=>NULL, 'null' => false, 'length'=> 50),
+					'firstname' => array('type'=>'string', 'default'=>NULL, 'null' => false, 'length'=> 50),
+					'lastname' => array('type'=>'string', 'default'=>NULL, 'null' => false, 'length'=> 50),
+					'rule' =>  array('type'=>'string', 'default'=>NULL, 'null' => false, 'length'=> 10),
+					'created' => array('type'=>'datetime', 'default'=>NULL, 'null' => false),
+					'updated' => array('type'=>'datetime', 'default'=>NULL, 'null' => false),
+				),
+				'tags' => array(
+					'id' => array('type'=>'integer' , 'length'=> 5, 'key' => 'primary'),
+					'tag' => array('type'=>'string', 'default'=>NULL, 'null' => false, 'length'=> 30),
+					'keterangan' => array('type'=>'string', 'default'=>NULL, 'null' => false, 'length'=> 50),
+					'created' => array('type'=>'datetime', 'default'=>NULL, 'null' => false),
+					'updated' => array('type'=>'datetime', 'default'=>NULL, 'null' => false),
+				),
+				'articles' => array(
+					'id' => array('type'=>'integer' , 'length'=> 5, 'key' => 'primary'),
+					'user_id' => array('type'=>'integer' , 'length'=> 5, 'default'=>NULL, 'null' => false ),
+					'tag_id' => array('type'=>'integer' , 'length'=> 5, 'default'=>NULL, 'null' => false ),
+					'title' => array('type'=>'string', 'default'=>NULL, 'null' => false, 'length'=> 100),
+					'content' => array('type'=>'text', 'default'=>NULL, 'null' => false),
+					'published' =>  array('type'=>'integer', 'default'=>1, 'null' => false, 'length'=> 1),
+					'created' => array('type'=>'datetime', 'default'=>NULL, 'null' => false),
+					'updated' => array('type'=>'datetime', 'default'=>NULL, 'null' => false),
+				),
+				'comments' => array(
+					'id' => array('type'=>'integer' , 'length'=> 10, 'key' => 'primary'),
+					'article_id' => array('type'=>'integer' , 'length'=> 5, 'default'=>NULL, 'null' => false ),
+					'subject' => array('type'=>'string', 'default'=>NULL, 'null' => false, 'length'=> 100),
+					'content' => array('type'=>'text', 'default'=>NULL, 'null' => false),
+					'published' =>  array('type'=>'integer', 'default'=>1, 'null' => false, 'length'=> 1),
+					'created' => array('type'=>'datetime', 'default'=>NULL, 'null' => false),
+					'updated' => array('type'=>'datetime', 'default'=>NULL, 'null' => false),
+				),
+			);
+		),
+	);
+
+/**
+ * Before migration callback
+ *
+ * @param string $direction, up or down direction of migration process
+ * @return boolean Should process continue
+ * @access public
+ */
+	public function before($direction) {
+		return true;
+	}
+
+/**
+ * After migration callback
+ *
+ * @param string $direction, up or down direction of migration process
+ * @return boolean Should process continue
+ * @access public
+ */
+	public function after($direction) {
+		return true;
+	}
+}

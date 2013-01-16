@@ -1,0 +1,47 @@
+<div id="news-header" class="twelve columns block-grid">
+		<h2 class="main-title">News</h2>
+</div>
+<div class="spacer clear"></div>
+<div class="twelve columns block-grid">
+	<?php echo $this->Session->flash(); ?>
+</div>
+	<?php 
+		echo	$this->Form->create(array('action'=>'search', 'admin'=>true, 'type'=>'get'));
+		echo $this->Form->input('keyword', array('label'=>false, 'placeholder'=>'Kata kunci', 'div'=> array('class'=>'nine columns')));
+		echo $this->Form->submit('Cari', array('class'=>'button expand postfix', 'div'=> array('class'=>'three columns')));
+		if(isset($_GET['keyword'])){
+			echo $this->Form->submit('Reset Pencarian', array('class'=>'button expand  postfix', 'div'=> array('class'=>'three columns')) ,array('controller'=>'news', 'action'=>'index' , 'admin'=>true));
+		}
+		echo $this->Form->end();
+	?>
+<div class="spacer clear"></div>
+<div class="row">
+	<h4 class="twelve title-orange"><?php echo $this->Html->image('notes.png', array('class'=>'admin-logo')); ?>News List <?php echo $this->Html->link('Tambah',array('action'=>'add', 'admin'=> true), array('class'=>'button radius'));?></h4>
+	<table class="twelve columns border-gray">
+		<tr>
+			<td width=5%>No</td>
+			<td width=60%>Title</td>
+			<td width=5%>Published</td>
+			<td width=30%>Actions</td>
+		</tr>	
+		<?php
+			$no = 1;
+			foreach ($news as $n):
+		?>
+		<tr>
+			<td><?php echo $no++; ?></td>
+			<td><?php echo $n['News']['title']; ?></td>
+			<td><?php echo $n['News']['published']; ?></td>
+			<td>
+					<?php
+						echo $this->Html->link(__('Ubah'), array('controller'=>'news', 'action'=>'edit', $n['News']['id']), array('class'=>'button radius small'));
+						echo $this->Html->link(__('Baca'), array('controller'=>'news', 'action'=>'view', $n['News']['id']), array('class'=>'button radius small'));
+						echo $this->Form->postLink(__('Hapus'),array('admin' => true, 'controller'=>'news', 'action'=>'delete', $n['News']['id']), array('class'=>'button radius small'), 'Apakah anda yakin ?');
+					?>
+			</td>
+		</td>
+		<?php endforeach; ?>
+	</table>
+	<?php echo $this->element('pagination'); ?>
+	<div class="spacer twelve columns"></div>
+</div>

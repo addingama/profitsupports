@@ -1,0 +1,14 @@
+<div class="row">
+	<?php echo $this->Form->create('Contact', array('class'=>'seven columns')) ?>
+		<fieldset>
+			<legend>Detail Pesan</legend>
+			<?php
+				echo $this->Form->input('name', array('disabled'=>true));
+				echo $this->Form->input('email', array('disabled'=>true));
+				echo $this->Form->input('subject', array('disabled'=>true));
+				echo $this->Form->input('desc_content', array('disabled'=>true));
+			?>
+			<?php echo $this->Html->link(__('Kembali'),array('admin'=>true, 'controller'=>'contacts', 'action'=>'index'), array('class'=>'button radius')); ?>
+		</fieldset>
+	<?php echo $this->Form->end(); ?>
+</div>

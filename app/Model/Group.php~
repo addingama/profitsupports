@@ -1,0 +1,38 @@
+<?php
+	class Group extends AppModel{
+		public $name = 'Group';
+		public $validate = array(
+			'name' => array(
+				'name not empty' => array('rule' => 'notEmpty', 'message' => 'Nama group user harus diisi'),
+				'name must unique' =>  array('rule' => 'isUnique', 'message' => 'Nama group user tersebut sudah terdaftar'),
+			),
+			'description' => array(
+				'description not empty' => array('rule' => 'notEmpty', 'message' => 'Deskripsi group user harus diisi'),
+			),
+		);
+		public $hasMany = array(
+			'user' => array(
+				'class' => 'User',
+				'foreignKey' => 'group_id',
+				'dependent' => true
+			)
+		);
+		
+		//============ main function here ==================
+		public function createGroup(){
+			return $this->create();
+		}
+		public function findGroup($type=null, $condition=null){
+			return $this->find($type,$condition);
+		}
+		public function readGroup($field=null, $id = null){
+			return $this->read($field, $id);
+		}
+		public function saveGroup($data = null){
+			return $this->save($data);
+		}
+		public function deleteGroup($id = null, $cascade = null){
+			return $this->delete($id, $cascade);
+		}
+	}
+?>

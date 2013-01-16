@@ -1,0 +1,49 @@
+<?php
+	class GroupsController extends AppController{
+		public $name = 'Groups';
+
+
+		
+		//============================== main crud function here =================================
+		public function index(){
+			$this->set('groups', $this->Group->findGroup('all'));
+		}
+		public function view($id){
+			$this->request->data = $this->Group->readGroup(null,$id);
+		}
+		public function add(){
+			if($this->request->is('post')){
+				$this->Group->createGroup();
+				if($this->Group->saveGroup($this->request->data)){
+					$this->Session->setFlash(__('Group user berhasil ditambahkan'));
+					$this->redirect(array('controller'=>'groups', 'action'=>'index'));
+				}else{
+					$this->Session->setFlash(__('Group user gagal ditambahkan'));
+				}
+			}
+		}
+		public function edit($id){
+			$this->Group->id = $id;
+			if($this->request->is('post') || $this->request->is('put')){
+				if($this->Group->saveGroup($this->request->data)){
+					$this->Session->setFlash(__('Group user berhasil di ubah'));
+					$this->redirect(array('controller'=>'groups', 'action'=>'view',$id));
+				}else{
+					$this->Session->setFlash(__('Group user gagal di ubah'));
+				}
+			}else{
+				$this->request->data = $this->Group->readGroup(null, $id);
+			}
+		}
+		public function delete($id){
+			if($this->request->is('post')){
+				if($this->Group->deleteGroup($id)){
+					$this->Session->setFlash(__('Group user berhasil di hapus'));
+					$this->redirect(array('controller'=>'groups', 'action'=>'index'));
+				}else{
+					$this->Session->setFlash(__('Group user gagal di hapus'));
+				}
+			}
+		}
+	}
+?>
